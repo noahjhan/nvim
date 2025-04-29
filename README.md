@@ -1,4 +1,4 @@
-# **NEOGARF** - A Garfield-Themed Neovim Config
+# **NEOGARF**
 
 _“I hate Mondays.”_
 
@@ -26,7 +26,6 @@ Welcome to **NEOGARF**, the absurd Neovim configuration inspired by everyone’s
 ---
 
 ## Optimized for Neovide
-
 
 ```bash
 git clone https://github.com/noahjhan/neogarf ~/.config/nvim
