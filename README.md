@@ -27,5 +27,7 @@ Welcome to **NEOGARF**, the absurd Neovim configuration inspired by everyone’s
 
 ## Optimized for Neovide
 
+---
+
 ```bash
 git clone https://github.com/noahjhan/neogarf ~/.config/nvim
