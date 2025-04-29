@@ -1,12 +1,12 @@
 # **NEOGARF** - A Garfield-Themed Neovim Config
 
-_“I hate Mondays. But I love Neovim.”_
+_“I hate Mondays.”_
 
-Welcome to **NEOGARF**, the absurd, orange-furred Neovim configuration inspired by everyone’s favorite lasagna-loving feline — **Garfield**! Whether you're a fan of efficient editing or just a sucker for nostalgic 80s comic strips, this config brings a blend of Neovim power and Garfield charm.
+Welcome to **NEOGARF**, the absurd Neovim configuration inspired by everyone’s favorite lasagna-loving feline— **Garfield**!
 
 ---
 
-## 🔌 Plugins Used
+## Plugins Used
 
 | Plugin           | Description |
 |------------------|-------------|
@@ -25,7 +25,7 @@ Welcome to **NEOGARF**, the absurd, orange-furred Neovim configuration inspired 
 
 ---
 
-## 🖥️ Optimized for Neovide
+## Optimized for Neovide
 
 
 ```bash
