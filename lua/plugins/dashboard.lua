@@ -40,6 +40,12 @@ return {
                         desc = 'Lasagna Rat',
                         action = ':cd ~/github_projects/rat | Ex',
                         },
+                        -- {
+                        -- icon = ' ',
+                        -- icon_hl = 'Title',
+                        -- desc = 'Lasagna Spimbot',
+                        -- action = ':cd ~/cs233/spimbot | Ex',
+                        -- },
                         {
                         icon = ' ',
                         icon_hl = 'Title',
