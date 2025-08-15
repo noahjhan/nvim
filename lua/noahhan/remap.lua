@@ -15,3 +15,5 @@ vim.api.nvim_set_keymap('v', 'd', '"+d', { noremap = true, silent = true })
 -- paste / delete into black hole buffer
 vim.keymap.set("x", "<leader>p", [["_d+P]])
 vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
+
+

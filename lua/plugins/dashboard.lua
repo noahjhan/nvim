@@ -38,7 +38,7 @@ return {
                         icon = ' ',
                         icon_hl = 'Title',
                         desc = 'Lasagna Rat',
-                        action = ':cd ~/github_projects/rat | Ex',
+                        action = ':cd ~/github_projects/rat_2.0 | Ex',
                         },
                         -- {
                         -- icon = ' ',
