@@ -41,8 +41,8 @@ return {
             require('lspconfig').gleam.setup({})
             require('lspconfig').ocamllsp.setup({})
             require('lspconfig').clangd.setup({
-        cmd = { "clangd", "--compile-commands-dir=build" }
-      })
+              cmd = { "clangd" }
+            })
             require('lspconfig').rust_analyzer.setup({})
             require('lspconfig').kotlin_language_server.setup({})
             require('lspconfig').pyright.setup({})
