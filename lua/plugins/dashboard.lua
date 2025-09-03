@@ -40,12 +40,12 @@ return {
                         desc = 'Lasagna Rat',
                         action = ':cd ~/github_projects/rat_2.0 | Ex',
                         },
-                        -- {
-                        -- icon = ' ',
-                        -- icon_hl = 'Title',
-                        -- desc = 'Lasagna Spimbot',
-                        -- action = ':cd ~/cs233/spimbot | Ex',
-                        -- },
+                        {
+                        icon = ' ',
+                        icon_hl = 'Title',
+                        desc = 'Lasagna Distributed Systems',
+                        action = ':cd ~/github_projects/distributed_systems | Ex',
+                        },
                         {
                         icon = ' ',
                         icon_hl = 'Title',
@@ -56,7 +56,7 @@ return {
                         icon = ' ',
                         icon_hl = 'Title',
                         desc = 'Lasagna Find',
-                        action = ':cd ~/github_projects | Telescope find_files'
+                        action = ':cd ~/github_projects | Telescope find_files | Ex'
                         },
                         {
                         icon = ' ',
