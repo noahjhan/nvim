@@ -44,7 +44,7 @@ return {
                         icon = ' ',
                         icon_hl = 'Title',
                         desc = 'Lasagna Distributed Systems',
-                        action = ':cd ~/github_projects/distributed_systems | Ex',
+                        action = ':cd ~/github_projects/distributed_systems/gb4 | Ex',
                         },
                         {
                         icon = ' ',

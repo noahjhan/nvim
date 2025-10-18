@@ -17,6 +17,9 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 999
 vim.opt.signcolumn = "yes"
 
+vim.o.shell = os.getenv("SHELL")
+vim.env.NVIM_LISTEN_ADDRESS = '/tmp/nvimsocket'
+
 
 vim.api.nvim_create_autocmd("InsertEnter", {
   pattern = "*",
