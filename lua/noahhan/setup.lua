@@ -1,8 +1,7 @@
 vim.opt.expandtab = true
-
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 
 vim.opt.smartindent = true
 vim.opt.cindent = true
@@ -22,19 +21,19 @@ vim.env.NVIM_LISTEN_ADDRESS = '/tmp/nvimsocket'
 
 
 vim.api.nvim_create_autocmd("InsertEnter", {
-  pattern = "*",
-  callback = function()
-    vim.o.number = true
-    vim.o.relativenumber = false
-  end,
+    pattern = "*",
+    callback = function()
+        vim.o.number = true
+        vim.o.relativenumber = false
+    end,
 })
 
 vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = "*",
-  callback = function()
-    vim.o.number = true
-    vim.o.relativenumber = true
-  end,
+    pattern = "*",
+    callback = function()
+        vim.o.number = true
+        vim.o.relativenumber = true
+    end,
 })
 
 -- vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
@@ -47,22 +46,22 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- })
 
 vim.api.nvim_create_user_command("Setup", function()
-  vim.cmd("sp")                       -- horizontal split
-  vim.cmd("resize 50%")               -- half height
-  vim.cmd("wincmd j")                 -- move to bottom
-  vim.cmd("terminal")                 -- open terminal
-  vim.cmd("wincmd k")                 -- move back up
-  vim.cmd("vsp")                      -- vertical split
+    vim.cmd("sp")                       -- horizontal split
+    vim.cmd("resize 50%")               -- half height
+    vim.cmd("wincmd j")                 -- move to bottom
+    vim.cmd("terminal")                 -- open terminal
+    vim.cmd("wincmd k")                 -- move back up
+    vim.cmd("vsp")                      -- vertical split
 end, {})
 
 vim.api.nvim_create_user_command('Config', function()
-  vim.cmd('cd ' .. vim.fn.expand('~') .. '/.config/nvim/lua') 
-  vim.cmd('e .')  
+    vim.cmd('cd ' .. vim.fn.expand('~') .. '/.config/nvim/lua') 
+    vim.cmd('e .')  
 end, {})
 
 vim.api.nvim_create_user_command('Tex', function()
-  vim.cmd('cd ' .. vim.fn.expand('~') .. '/github_projects')
-  vim.cmd('e .')
+    vim.cmd('cd ' .. vim.fn.expand('~') .. '/github_projects')
+    vim.cmd('e .')
 end, {})
 
 vim.api.nvim_create_user_command("W", function()

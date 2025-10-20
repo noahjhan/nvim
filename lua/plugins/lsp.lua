@@ -1,5 +1,3 @@
--- Neovim plugin spec: LSP, nvim-cmp and LuaSnip (Neovim 0.11+ friendly)
--- Drop this file into your config (e.g. lua/plugins/lsp.lua) and require it from your plugin manager.
 return {
   -- LuaSnip
   {
@@ -10,7 +8,6 @@ return {
         vim.notify('LuaSnip not found', vim.log.levels.WARN)
         return
       end
-      -- load vscode-style snippets (lazy)
       require('luasnip.loaders.from_vscode').lazy_load()
     end,
   },
@@ -54,25 +51,18 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
         }, {
-          { name = 'buffer' },
-          { name = 'path' },
-        }),
+            { name = 'buffer' },
+            { name = 'path' },
+          }),
       })
     end,
   },
 
-  -- lspconfig and server setups
+  -- LSP servers (Neovim 0.11+ compatible)
   {
     'neovim/nvim-lspconfig',
     dependencies = { 'hrsh7th/cmp-nvim-lsp' },
     config = function()
-      local ok, lspconfig = pcall(require, 'lspconfig')
-      if not ok then
-        vim.notify('nvim-lspconfig not found', vim.log.levels.ERROR)
-        return
-      end
-
-      -- Build capabilities robustly for different cmp_nvim_lsp versions
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       local ok_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
       if ok_cmp then
@@ -83,7 +73,6 @@ return {
         end
       end
 
-      -- simple on_attach for common LSP keymaps (customize as you like)
       local on_attach = function(client, bufnr)
         local function bufmap(mode, lhs, rhs, opts)
           opts = opts or { noremap = true, silent = true }
@@ -95,47 +84,53 @@ return {
         bufmap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
       end
 
-      local util = lspconfig.util
+      local util = require("lspconfig.util")
 
-      -- Helper to pick gopls from PATH or fallback to your personal path
+      -- Helper to pick gopls
       local gopls_cmd = { vim.fn.exepath('gopls') }
       if gopls_cmd[1] == '' then
         gopls_cmd = { '/Users/noahhan/go/bin/gopls' }
       end
 
-      -- gopls
-      lspconfig.gopls.setup({
-        cmd = gopls_cmd,
-        capabilities = capabilities,
-        on_attach = on_attach,
-        filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-        root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
-      })
-
-      -- clangd (C/C++)
-      lspconfig.clangd.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
-        root_dir = util.root_pattern('compile_commands.json', '.git'),
-      })
-
-      -- lua_ls
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = {
-          Lua = {
-            runtime = { version = 'LuaJIT' },
-            diagnostics = { globals = { 'vim' } },
-            workspace = {
-              library = vim.api.nvim_get_runtime_file('', true),
-              checkThirdParty = false,
+      local servers = {
+        gopls = {
+          cmd = gopls_cmd,
+          filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+          root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
+        },
+        clangd = {
+          cmd = { 'clangd' },  -- REQUIRED
+          filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+          root_dir = util.root_pattern('compile_commands.json', '.git'),
+        },
+        lua_ls = {
+          cmd = { 'lua-language-server' },  -- REQUIRED
+          settings = {
+            Lua = {
+              runtime = { version = 'LuaJIT' },
+              diagnostics = { globals = { 'vim' } },
+              workspace = {
+                library = vim.api.nvim_get_runtime_file('', true),
+                checkThirdParty = false,
+              },
+              telemetry = { enable = false },
             },
-            telemetry = { enable = false },
           },
         },
-      })
+      }
+      -- Start servers using new API
+      for name, config in pairs(servers) do
+        vim.lsp.start({
+          name = name,
+          on_attach = on_attach,
+          capabilities = capabilities,
+          cmd = config.cmd,
+          filetypes = config.filetypes,
+          root_dir = config.root_dir,
+          settings = config.settings,
+        })
+      end
     end,
   },
 }
+
