@@ -59,6 +59,11 @@ vim.api.nvim_create_user_command('Config', function()
     vim.cmd('e .')  
 end, {})
 
+vim.api.nvim_create_user_command('Wezterm', function()
+    vim.cmd('cd ' .. vim.fn.expand('~') .. '/.config/wezterm') 
+    vim.cmd('e .')  
+end, {})
+
 vim.api.nvim_create_user_command('Tex', function()
     vim.cmd('cd ' .. vim.fn.expand('~') .. '/github_projects')
     vim.cmd('e .')
